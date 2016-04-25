@@ -1,0 +1,89 @@
+// @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+// Some Resets 
+h1,h2,h3,h4,h5,h6 {
+    margin: 0;
+    padding: 0;
+}
+
+$pcolor: #13293D;
+$mcolor: #fff;
+
+// Usual Spaces
+$space: 10px;
+
+body {
+    color: $mcolor;
+}
+
+section {
+    background-color: $pcolor;
+    background-image: url("https://developer.cdn.mozilla.net/static/img/blueprint.87f886510d2c.png"), linear-gradient(to bottom , $pcolor, darken($pcolor,40%));
+    background-repeat: repeat;
+    height: 100vh; 
+}
+
+.login-panel {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 600px;
+    background: darken($pcolor, 5%);
+    border-top: 20px solid darken($pcolor, 10%);
+    padding: $space*4;
+}
+
+.box {
+    margin: $space*2 0;
+    background: lighten($pcolor, 5%);
+    .title {
+        background: darken($pcolor, 10%);
+        padding: $space $space*2;
+    }
+    p {
+        padding: $space;
+    }
+}
+
+.dates {
+    padding: $space $space*2;
+    text-align: center;
+    .day {
+        font-size: 24px;
+    }
+    .date {
+        
+    }
+}
+
+.form-bs {
+    border-radius: 0;
+}
+
+.btn-bs {
+    border-radius: 0;
+    background: $mcolor;
+    color: $pcolor;
+}
+
+.upper-dash {
+    padding: $space*4 0;
+}
+
+.form-upload {
+    padding: $space*2;
+}
+
+.upload-files {
+    list-style: none;
+    padding: $space*2;
+    
+    li {
+        margin: $space;
+    }
+    li a {
+        color: $mcolor;
+        margin: $space;
+    }
+}

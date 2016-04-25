@@ -1,0 +1,63 @@
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  padding: 0; }
+
+body {
+  color: #fff; }
+
+section {
+  background-color: #13293D;
+  background-image: url("https://developer.cdn.mozilla.net/static/img/blueprint.87f886510d2c.png"), linear-gradient(to bottom, #13293D, black);
+  background-repeat: repeat;
+  height: 100vh; }
+
+.login-panel {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  width: 600px;
+  background: #0d1c2a;
+  border-top: 20px solid #070f16;
+  padding: 40px; }
+
+.box {
+  margin: 20px 0;
+  background: #193650; }
+  .box .title {
+    background: #070f16;
+    padding: 10px 20px; }
+  .box p {
+    padding: 10px; }
+
+.dates {
+  padding: 10px 20px;
+  text-align: center; }
+  .dates .day {
+    font-size: 24px; }
+
+.form-bs {
+  border-radius: 0; }
+
+.btn-bs {
+  border-radius: 0;
+  background: #fff;
+  color: #13293D; }
+
+.upper-dash {
+  padding: 40px 0; }
+
+.form-upload {
+  padding: 20px; }
+
+.upload-files {
+  list-style: none;
+  padding: 20px; }
+  .upload-files li {
+    margin: 10px; }
+  .upload-files li a {
+    color: #fff;
+    margin: 10px; }
+
+/*# sourceMappingURL=style.css.map */
