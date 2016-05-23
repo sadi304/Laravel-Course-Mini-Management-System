@@ -11,7 +11,6 @@
 |
 */
 
-
     
 Route::get('/',[
     'uses' => 'UserController@getLogin',
@@ -41,6 +40,17 @@ Route::post('/signup',[
 Route::post('/uploadfile',[
     'uses' => 'UserController@postUpload',
     'as' => 'upload'
+]);
+
+Route::post('/createPost', [
+    'uses' => 'UserController@postCreatePost',
+    'as' => 'postCreatePost'
+]);
+
+Route::get('/getPost/{postID}',[
+    'uses' => 'UserController@getPost',
+    'as' => 'getPost',
+    'middleware' => 'auth'
 ]);
 
 Route::get('/getupload/{filename}',[

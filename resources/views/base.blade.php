@@ -3,7 +3,7 @@
 <head>
   
     @include('includes.head')
-  
+  	@yield('styles')
 </head>
 <body>
    

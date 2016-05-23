@@ -13,5 +13,9 @@ class dept extends Model
     public function courses() {
         return $this->hasManyThrough('App\course','App\User');
     }
+
+    public function posts() {
+    	return $this->hasManyThrough('App\post','App\User');
+    }
     
 }

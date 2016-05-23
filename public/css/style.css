@@ -6,30 +6,57 @@ body {
   color: #fff; }
 
 section {
-  background-color: #13293D;
-  background-image: url("https://developer.cdn.mozilla.net/static/img/blueprint.87f886510d2c.png"), linear-gradient(to bottom, #13293D, black);
+  background-color: #0090FF;
+  background-image: linear-gradient(to bottom, #0090FF, #001d33);
   background-repeat: repeat;
-  height: 100vh; }
+  height: 100vh;
+  position: relative;
+  z-index: 1; }
 
-.login-panel {
+section:after {
+  background: url("/images/texture.png") repeat;
+  opacity: .4;
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%; }
+
+.label {
+  border-radius: 0;
+  font-size: 85%; }
+
+.mid-panel {
   position: absolute;
   top: 50%;
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
-  width: 600px;
-  background: #0d1c2a;
-  border-top: 20px solid #070f16;
-  padding: 40px; }
+  width: 600px; }
+
+.main-title {
+  margin-bottom: 10px;
+  text-align: center;
+  font-size: 1.7vw; }
+
+.login-panel {
+  background: rgba(0, 0, 0, 0.2);
+  padding: 60px 40px; }
+
+.modal-style {
+  background: rgba(0, 58, 102, 0.7) !important;
+  color: #fff !important; }
 
 .box {
   margin: 20px 0;
-  background: #193650; }
+  background: #003a66; }
   .box .title {
-    background: #070f16;
+    background: #0073cc;
     padding: 10px 20px; }
   .box p {
-    padding: 10px; }
+    padding: 40px; }
 
 .dates {
   padding: 10px 20px;
@@ -43,7 +70,7 @@ section {
 .btn-bs {
   border-radius: 0;
   background: #fff;
-  color: #13293D; }
+  color: #000; }
 
 .upper-dash {
   padding: 40px 0; }

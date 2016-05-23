@@ -22,6 +22,8 @@ use App\upload;
 
 use App\course;
 
+use App\post;
+
 class UserController extends Controller
 {
     
@@ -43,6 +45,9 @@ class UserController extends Controller
         $uploads = $user->uploads()
                         ->orderBy('created_at','DESC')
                         ->get();
+        $posts = $user->posts()
+                      ->orderBy('created_at','DESC')
+                      ->get();
         
         $courses = $user->courses
                         ->all();
@@ -52,7 +57,7 @@ class UserController extends Controller
             $mainCourses[$course->id] = $course->name;
         }
         
-        return view('pages.dashboard')->withUploads($uploads)->withCourses($mainCourses);
+        return view('pages.dashboard')->withUploads($uploads)->withCourses($mainCourses)->withPosts($posts);
         
     }
     
@@ -112,7 +117,7 @@ class UserController extends Controller
             return redirect()->route('dashboard');
         }
         
-        return redirect()->back();
+        return redirect()->back()->withInvalid('Invalid Login Details');
     }
     
     public function postUpload(Request $request) {
@@ -144,6 +149,31 @@ class UserController extends Controller
         return redirect()->back();
             
     }
+
+    public function postCreatePost(Request $request) {
+        
+        $this->validate($request,[
+            'title' => 'required|min:6',
+            'body' => 'required|min:20'
+        ]);
+        
+        $post = new post();
+
+        //$user = Auth::user();
+
+        $post->title = $request['title'];
+
+        $post->body = $request['body'];
+
+        if ( ! $request->user()->posts()->save($post) ) {
+            return response()->json([ 'success' => 0, 'message' => 'There were errors in creating the post' ]);
+        }
+
+        else {
+            return response()->json([ 'success' => 1, 'message' => 'Post created successfully' ]);
+        }
+            
+    }
     
     public function getStudentDash() {
         
@@ -154,8 +184,12 @@ class UserController extends Controller
         $dept = Dept::Find(Auth::User()->dept_id);
         
         $courses = $dept->courses;
+
+        $users = $dept->users;
         
         $mainUploads = [];
+
+        $postUploads = [];
         
         foreach ( $courses as $course ) {
             $uploads = upload::where('course_id', $course->id)->get();
@@ -165,10 +199,21 @@ class UserController extends Controller
             }
             
         }
+
+        foreach ( $users as $user ) {
+            $posts = Post::where('user_id', $user->id)->get();
+          
+            foreach ( $posts as $post ) {
+                array_push($postUploads,$post);
+            }
+            
+        }
         
         $collection = collect($mainUploads)->sortByDesc('created_at');
+
+        $collection_2 = collect($postUploads)->sortByDesc('created_at');
         
-        return view('pages.sdashboard')->withUploads($collection);
+        return view('pages.sdashboard')->withUploads($collection)->withPosts($collection_2);
     }
     
     public function getUpload($filename) {
@@ -181,6 +226,26 @@ class UserController extends Controller
         );
         
         return new Response($file,200,$headers);
+            
+    }
+
+    public function getPost($id) {
+        
+        $post = Post::find($id);
+
+        $post_title = $post->title;
+
+        $post_body = nl2br(e($post->body));
+
+        $user = User::find($post->user_id);
+        
+        return response()->json([ 
+            'title' => $post_title, 
+            'body' => $post_body, 
+            'date' => $post->created_at->toDateTimeString(),
+            'author' => $user->name
+        ]);
+        //return 'test';
             
     }
     
